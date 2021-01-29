@@ -9,6 +9,11 @@ namespace Logic.Shapes
     /// </summary>
     public class Coordinates : IEquatable<Coordinates>
     {
+        private Coordinates()
+        {
+            // for json deserialisation
+        }
+
         public Coordinates(int x, int y)
         {
             X = x;
