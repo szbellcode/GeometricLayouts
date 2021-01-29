@@ -70,7 +70,7 @@ namespace IntegrationTests.WebApp
         }
 
         [Test]
-        public async Task ApiShapeSearch_ValidSearch_ReturnsOk()
+        public async Task ApiShapeSearch_ValidSearchWithResult_ReturnsOk()
         {
             // Arrange
             var client = _inMemoryHost.GetTestClient();
@@ -90,6 +90,26 @@ namespace IntegrationTests.WebApp
             var responseString = await response.Content.ReadAsStringAsync();
             ShapeSearchResultModel responseModel = JsonSerializer.Deserialize<ShapeSearchResultModel>(responseString, new JsonSerializerOptions { PropertyNameCaseInsensitive = true });
             Assert.AreEqual("A1", responseModel.Name);
+        }
+
+        [Test]
+        public async Task ApiShapeSearch_ValidSearchNoResult_ReturnsNotFound()
+        {
+            // Arrange
+            var client = _inMemoryHost.GetTestClient();
+
+            // Act
+            var payload = new ShapeSearchRequestModel()
+            {
+                SearchBy = "name",
+                Name = "this_does_not_exist"
+            };
+
+            var httpContent = new StringContent(JsonSerializer.Serialize(payload), System.Text.Encoding.UTF8, "application/json");
+            var response = await client.PostAsync(Endpoint, httpContent);
+
+            // Assert
+            Assert.AreEqual(System.Net.HttpStatusCode.NotFound, response.StatusCode);
         }
     }
 }
