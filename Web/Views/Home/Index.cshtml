@@ -1,0 +1,91 @@
+﻿@{
+    ViewData["Title"] = "Triangle Search";
+}
+@model AppConfig
+@{
+    var imgName = "/images/grids/Grid" + Model.GridSize + ".png";
+    var imgDimensions = Model.GridSize * 100;
+}
+<h1>Triangle Search</h1>
+
+<p>
+    Search for a triangle by either name or vertex coordinates.
+    <br />Each triangle has a non-hypotenuse side length of @Model.NonHypotenuseSideLength pixels.
+    <br />Grid cell positions start at [1,1] in bottom/left of grid.
+</p>
+<form name="search" id="search">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-6">
+                <div class="form-group row">
+                    <div class="col-md-12">
+                        <div class="row">
+                            <label class="col-md-3" for="searchBy1">Search By</label>
+                            <div class="col-md-9">
+                                <div class="form-check">
+                                    <input class="form-check-input" type="radio" name="searchBy" id="searchBy1" value="name" checked>
+                                    <label class="form-check-label" for="searchBy1">
+                                        Name
+                                    </label>
+                                </div>
+                                <div class="form-check">
+                                    <input class="form-check-input" type="radio" name="searchBy" id="searchBy2" value="coordinates">
+                                    <label class="form-check-label" for="searchBy2">
+                                        Co-ordinates
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group row" id="namesearch">
+                    <label for="name" class="col-md-3 col-form-label float-right"></label>
+                    <div class="col-md-6">
+                        <input type="text" class="form-control" id="name" name="name" maxlength="20">
+                    </div>
+                </div>
+                <div class="form-group row" id="coordinatesearch">
+                    <label for="vertex1" class="col-md-3 col-form-label"></label>
+                    <div class="col-sm-2">
+                        <input type="text" class="form-control" id="vertex1" name="vertex1" placeholder="x1,y1" disabled>
+                    </div>
+                    <div class="col-sm-2">
+                        <input type="text" class="form-control" id="vertex2" name="vertex2" placeholder="x2,y2" disabled>
+                    </div>
+                    <div class="col-sm-2">
+                        <input type="text" class="form-control" id="vertex3" name="vertex3" placeholder="x3,y3" disabled>
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <div class="col-md-3"></div>
+                    <div class="col-md-9">
+                        <button type="submit" class="btn btn-primary">Search</button>
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <div class="col-md-12">
+                        <h3>Search Result</h3>
+                        <div id="result">Your search result will appear here.</div>
+                    </div>
+
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="well">
+                    <img src="@imgName" height="@imgDimensions" width="@imgDimensions" id="gridImage" alt="Grid" />
+                    <canvas id='gridCanvas'></canvas>
+                </div>
+            </div>
+        </div>
+    </div>
+</form>
+
+@section scripts {
+    <environment include="Development">
+        <script src="~/js/geometricLayouts.js"></script>
+    </environment>
+        <script>
+        geometricLayouts.gridSize = '@Model.GridSize'
+        </script>
+}
+
