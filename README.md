@@ -11,8 +11,10 @@ Generates a grid of triangles which can be searched for by name or coordinates.
 
 ## Running
   - Web application URL
-    - https://localhost:5001
+    - https://localhost:5001 (self hosted) 
+    - https://localhost:52440 (iis express)
   - Swagger API Documentation URL
-    - https://localhost:5001/swagger/
+    - https://localhost:5001/swagger/ (self hosted) 
+    - https://localhost:52440/swagger (iis express)
 
     
