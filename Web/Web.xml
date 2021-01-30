@@ -1,0 +1,34 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Web</name>
+    </assembly>
+    <members>
+        <member name="M:Web.Controllers.ShapeSearchController.Search(Web.Models.ShapeSearchRequestModel)">
+            <summary>Searches for a triangle using the provided search criteria.</summary>
+            <response code="200">Triangle found</response>
+            <response code="400">Invalid search</response>
+            <response code="404">Triangle not found</response>
+        </member>
+        <member name="P:Web.Models.ShapeSearchRequestModel.SearchBy">
+            <summary> The type of search i.e. 'name' or 'coordinates'.</summary>
+            <example>name|coordinates</example>
+        </member>
+        <member name="P:Web.Models.ShapeSearchRequestModel.Name">
+            <summary> The name of the triangle to search for.</summary>
+            <example>A1</example>
+        </member>
+        <member name="P:Web.Models.ShapeSearchRequestModel.Vertex1">
+            <summary> The coordinates of vertex 1.</summary>
+            <example>0,0</example>
+        </member>
+        <member name="P:Web.Models.ShapeSearchRequestModel.Vertex2">
+            <summary> The coordinates of vertex 2.</summary>
+            <example>0,10</example>
+        </member>
+        <member name="P:Web.Models.ShapeSearchRequestModel.Vertex3">
+            <summary> The coordinates of vertex 3.</summary>
+            <example>10,0</example>
+        </member>
+    </members>
+</doc>

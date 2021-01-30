@@ -22,6 +22,9 @@ namespace Web
         {
             services.AddControllersWithViews();
 
+            // SB - document API using Swagger (http://localhost:5001/swagger)
+            AddSwagger(services);
+
             // SB - custom DI registrations from Logic project
             services.AddLogicServices(Configuration);
 
@@ -44,10 +47,33 @@ namespace Web
 
             app.UseRouting();
 
+            app.UseSwagger();
+            app.UseSwaggerUI(c =>
+            {
+                // SB - url to the machine readable version of the swagger documentation 
+                c.SwaggerEndpoint("/swagger/v1/swagger.json", "Geometric Layouts API");
+            });
+
             app.UseEndpoints(endpoints => {
                 endpoints.MapControllerRoute(
                     name: "default",
                     pattern: "{controller=Home}/{action=Index}/{id?}");
+            });
+        }
+
+        private void AddSwagger(IServiceCollection services)
+        {
+            services.AddSwaggerGen(setup =>
+            {
+                // SB - overview info for the generated Swagger docs
+                setup.SwaggerDoc("v1", new Microsoft.OpenApi.Models.OpenApiInfo
+                {
+                    Version = "v1",
+                    Title = "Geometric Layouts API"
+                });
+
+                var filePath = System.IO.Path.Combine(System.AppContext.BaseDirectory, "Web.xml");
+                setup.IncludeXmlComments(filePath);
             });
         }
     }
