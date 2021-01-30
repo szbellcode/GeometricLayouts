@@ -1,4 +1,4 @@
-# Triangle Generator
+# Geometric Layouts
 
 # Overview
 Generates a grid of triangles which can be searched for by name or coordinates.
