@@ -83,15 +83,15 @@ $(function () {
                 minlength: "Please ensure the name contains at least 2 characters"
             },
             vertex1: {
-                required: "Please enter coordiantes",
+                required: "Please enter coordinates",
                 coordinate: "Please use {x,y} format e.g. 0,0"
             },
             vertex2: {
-                required: "Please enter coordiantes",
+                required: "Please enter coordinates",
                 coordinate: "Please use {x,y} format e.g. 0,10"
             },
             vertex3: {
-                required: "Please enter coordiantes",
+                required: "Please enter coordinates",
                 coordinate: "Please use {x,y} format e.g. 10,0"
             }
         },
